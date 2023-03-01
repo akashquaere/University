@@ -189,7 +189,7 @@ namespace UniversityRecruitment.Controllers
             if (ModelState.IsValid)
             {
                 obj = acdb.CheckAuthorization<Login>(model);
-                if (obj.Flag == 1)
+                if (obj.ResponseCode == 1)
                 {
                     sm.FirstName = obj.FirstName;
                     sm.MiddleName = obj.MiddleName;
@@ -204,15 +204,15 @@ namespace UniversityRecruitment.Controllers
                     sm.PermanentStateId = obj.PermanentStateId;
                     sm.PermanentCityId = obj.PermanentCityId;
                     sm.PinCode = obj.PinCode;
-                    sm.EmailId = obj.EmailId;
+                    sm.EmailId = obj.Email;
                     sm.Mobile = obj.Mobile;
                     sm.Password = obj.Password;
-                    sm.userId = obj.ApplicationId;
+                    sm.userId = obj.Id;
                     return RedirectToAction("Index", "Applicant");
                 }
                 else
                 {
-                    CreateResponse("", "", obj.msg, ResponseType.Error);
+                    CreateResponse("", "", obj.ResponseMessage, ResponseType.Error);
                 }
             }
             else

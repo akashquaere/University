@@ -10,26 +10,27 @@
         width: 50%;
         padding: 10px;
     }
+
     .head {
         background: #0748a7;
         color: #fff;
     }
-    .form-control{
+
+    .form-control {
         height: 40px;
     }
-    @@media only screen and (max-width: 460px) {
-  .cp_refresh {
-  margin-top: 20px!important;
-  }
-}
 
-    
+    @@media only screen and (max-width: 460px) {
+        .cp_refresh {
+            margin-top: 20px !important;
+        }
+    }
 </style>
 
 <section class="pt-10 pb-30">
     <div class="container">
         <h3 class="head text-light text-center p-1 mb-4 mt-2">New Application Registration Form</h3>
-        @using (Html.BeginForm("Registration", "Home", FormMethod.Post))
+        @using (Html.BeginForm("Registration", "Home", FormMethod.Post, new { @id = "regForm" }))
         {
             @Html.Partial("_ResponseMessage")
             <div class="row" style="min-height: 100%; margin: 0;">
@@ -157,12 +158,20 @@
                                 @Html.DropDownListFor(m => m.PermanentStateId, new SelectList(ViewBag.StateList, "Value", "Text"), "-- Select --", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.PermanentStateId, "", new { @class = "text-danger" })
                             </div>
+                            <div class="col-sm-12" id="stateOther" style="display:none;">
+                                @Html.TextBoxFor(m => m.PermanentStateOther, new { @class = "form-control" })
+                                <span id="sOtherError" class="form-control"></span>
+                            </div>
                         </div>
                         <div class="col-sm-5">
                             <label class="col-sm-12 required">City <span>*</span></label>
                             <div class="col-sm-12">
                                 @Html.DropDownListFor(m => m.PermanentCityId, new SelectList(string.Empty, "Value", "Text"), "-- Select --", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.PermanentCityId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-12" id="cityOther" style="display:none;">
+                                @Html.TextBoxFor(m => m.PermanentCityOther, new { @class = "form-control" })
+                                <span id="cOtherError" class="form-control"></span>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -245,7 +254,7 @@
 
                 <div class="col-sm-12 center text-center">
                     @*<input type="submit" value="Register Me" class="btn btn-success" />*@
-                    <button type="submit" class="btn btn-success">Register Me</button>
+                    <button type="button" class="btn btn-success">Register Me</button>
                 </div>
 
             </div>
@@ -262,7 +271,25 @@
 
     $("#PermanentStateId").on("change", function () {
         debugger;
+
+        var stateOther = $("#PermanentStateId option:selected").text();
+
+        if (stateOther.toLowerCase() == "other" ) {
+            $("#stateOther").show();
+        }
+
         LoadCourse($("#PermanentStateId").val(), "", "PermanentCityId");
+    });
+
+    $("#PermanentCityId").on("change", function () {
+        debugger;
+
+        var stateOther = $("#PermanentCityId option:selected").text();
+
+        if (stateOther.toLowerCase() == "other") {
+            $("#cityOther").show();
+        }
+
     });
 
     function LoadCourse(PermanentStateId, PermanentCityId, dropdownId) {
@@ -291,6 +318,26 @@
         else {
             $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
         }
+    }
+
+    function validate() {
+
+        var PermanentCityOther =  $('#PermanentCityOther').val();
+        var PermanentStateOther = $('#PermanentStateOther').val();
+
+        if (PermanentCityOther == "" || PermanentCityOther == null || PermanentCityOther == undefined || typeof (PermanentCityOther) == undefined && PermanentStateOther == "" || PermanentStateOther == null || PermanentStateOther == undefined || typeof (PermanentStateOther) == undefined) {
+
+            $('#sOtherError').text('Enter value')
+            $('#cOtherError').text('Enter value')
+
+        }
+        else {
+
+            $('#regForm').submit();
+
+        }
+
+        
     }
 
 </script>
