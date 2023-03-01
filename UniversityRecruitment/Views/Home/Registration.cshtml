@@ -1,0 +1,296 @@
+﻿@model UniversityRecruitment.Models.Registration
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_UniversityLayout.cshtml";
+}
+
+<style>
+    .center {
+        margin: 0px 288px;
+        width: 50%;
+        padding: 10px;
+    }
+    .head {
+        background: #0748a7;
+        color: #fff;
+    }
+    .form-control{
+        height: 40px;
+    }
+    @@media only screen and (max-width: 460px) {
+  .cp_refresh {
+  margin-top: 20px!important;
+  }
+}
+
+    
+</style>
+
+<section class="pt-10 pb-30">
+    <div class="container">
+        <h3 class="head text-light text-center p-1 mb-4 mt-2">New Application Registration Form</h3>
+        @using (Html.BeginForm("Registration", "Home", FormMethod.Post))
+        {
+            @Html.Partial("_ResponseMessage")
+            <div class="row" style="min-height: 100%; margin: 0;">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">First Name <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Middle Name</label>
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-12">Surname</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">Father's Name <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.FatherName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">Mother's Name <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MotherName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">Date of Birth <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker-here", autocomplete = "off", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
+                                <span id="body_reqDob" class="validator" style="display:none;">enter value</span>
+                                <span id="body_regDob" class="validator" style="display:none;">enter date in DD/MM/YYYY format</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">AADHAR No. <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.AddharNo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.AddharNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">Gender <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(m => m.Gender, new List<SelectListItem>
+                           {
+                                new SelectListItem{ Text="Male", Value = "Male" },
+                                new SelectListItem{ Text="Female", Value = "Female" },
+                                new SelectListItem{ Text="Transgender", Value = "Transgender" },
+                           }, "-- select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-12 required">Category <span>*</span></label>
+                            <div class="col-sm-12">
+
+                                @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
+                         {
+                              new SelectListItem{ Text="General", Value = "General" },
+                              new SelectListItem{ Text="OBC", Value = "OBC" },
+                              new SelectListItem{ Text="SC", Value = "SC" },
+                              new SelectListItem{ Text="ST", Value = "ST" },
+                         }, "-- Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-title" style="padding-left: 15px;">Permanent Address</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div style="color: red; padding-left: 15px;"><b>Note: </b>Reservation criteria will be followed by the permanent address i.e. state mentioned in permanent address.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="col-sm-12 required">Address Line 1 <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.PermanentAddress1, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PermanentAddress1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="col-sm-12">Address Line 2</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.PermanentAddress2, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label class="col-sm-12 required">State <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(m => m.PermanentStateId, new SelectList(ViewBag.StateList, "Value", "Text"), "-- Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PermanentStateId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label class="col-sm-12 required">City <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(m => m.PermanentCityId, new SelectList(string.Empty, "Value", "Text"), "-- Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PermanentCityId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 required">Pin Code <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PinCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="col-sm-12 required">Email ID <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="col-sm-12 required">Mobile <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="col-sm-12 required">Password <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @type = "Password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="col-sm-12 required">Confirm Password <span>*</span></label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", @type = "Password" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-2">
+                            <div class="captcha">
+                                <label class="btn-block">Captcha</label>
+                                <img src='@Url.Action("GetCaptchaimage", "Home")' id="imgCaptcha" style="border: solid 1px #ccc; width: 100%; height: 50px;" class="img-responsive captchimg" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-1 refresh" style="top: 33px;">
+                            <div class="cp_refresh mt-5">
+                                <a href="javascript:void()" onclick="javascript: RefreshCaptcha();">
+                                    <img src='@Url.Content("~/Content/Assests/img/refresh.png")' tabindex="3" alt="Refresh Captcha" height="30px" width="30px" title="Refresh Captcha" />
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6">
+                                    <label>Enter Captcha <span>*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.Captcha, new { Class = "form-control", @maxlength = "5" })
+                                        @Html.ValidationMessageFor(m => m.Captcha, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12 center text-center">
+                    @*<input type="submit" value="Register Me" class="btn btn-success" />*@
+                    <button type="submit" class="btn btn-success">Register Me</button>
+                </div>
+
+            </div>
+        }
+    </div>
+</section>
+
+<script>
+
+    function RefreshCaptcha() {
+        var img = document.getElementById("imgCaptcha");
+        img.src = '@Url.Action("GetCaptchaimage", "Home")' + "?query=" + Math.random();
+    }
+
+    $("#PermanentStateId").on("change", function () {
+        debugger;
+        LoadCourse($("#PermanentStateId").val(), "", "PermanentCityId");
+    });
+
+    function LoadCourse(PermanentStateId, PermanentCityId, dropdownId) {
+        debugger;
+        if (PermanentStateId != "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("BindCityList", "Home")',
+                data: { StateId: PermanentStateId },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                        $.each(data, function (key, value) {
+                            $("#" + dropdownId).append($("<option></option>").val(value.Value).text(value.Text));
+                        });
+                    }
+                    else {
+                        $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        else {
+            $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+        }
+    }
+
+</script>

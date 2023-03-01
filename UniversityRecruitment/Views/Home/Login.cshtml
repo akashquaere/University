@@ -1,0 +1,51 @@
+﻿@model UniversityRecruitment.Models.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_UniversityLayout.cshtml";
+}
+
+<section class="email pt-10 pb-50">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="container p-10">
+                <h3 class="bg-success text-light text-center p-1 mb-4">Sign-In For Registered Applicants</h3>
+
+            </div>
+
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                @Html.Partial("_ResponseMessage")
+                <div class="row" style="margin: 0;">
+                    <div class="card shadow">
+                        <div class="card-header bg-warning bg-opacity-10">
+                            Sign In
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="col-sm-12">Email / Mobile</label>
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(m => m.LoginId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.LoginId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12">Password</label>
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">LOGIN</button>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

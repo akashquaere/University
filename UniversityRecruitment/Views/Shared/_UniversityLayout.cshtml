@@ -1,0 +1,70 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        @ViewBag.Title
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components." />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css" integrity="sha512-3PN6gfRNZEX4YFyz+sIyTF6pGlQiryJu9NlGhu9LrLMQ7eDjNgudQoFDK3WSNAayeIKc6B8WXXpo4a7HqxjKwg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/Content/Assests/css/main.css" />
+    <link rel="stylesheet" href="~/Content/Assests/css/custom.css" />
+    <link href="~/Content/Assests/css/datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/Assests/css/jquery-confirm.css" rel="stylesheet" />
+    <link href="~/Content/Assests/css/sweetalert.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-3.4.1.min.js"></script>
+
+
+
+</head>
+<body style="height: 100%; font-family: arial;">
+    <div class="container">
+        <div style="padding: 10px 0;">
+            <a href="/" style="text-decoration: none;"><img id="Image1" src="~/Content/Assests/img/logo_100x100.png" style="float: left; margin-right: 10px; height: 90px;" /></a>
+            <img id="Image2" src="~/Content/Assests/img/gandhi_ji_100px.png" style="float: right; margin-right: 10px; height: 90px;" />
+            <div style="color: navy; font-size: 25px; font-weight: bold; text-align: center;">
+                MAHATMA GANDHI KASHI VIDYAPITH, VARANASI
+            </div>
+            <div style="color: red; font-size: 25px; font-weight: bold; text-align: center;">
+                महात्मा गांधी काशी विद्यापीठ, वाराणसी
+            </div>
+            <div style="color: #000; font-size: 14px; font-weight: bold; text-align: center;">
+
+                An Uttar Pradesh State University
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="bg-primary text-light">
+        <div class="container">
+
+            <div style="padding: 5px; font-size: 22px; text-align: center; font-weight: bold;">
+                <a href="/" style="text-decoration: none;" class="text-light">RECRUITMENT PORTAL</a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+    <div class="clearfix"></div>
+</body>
+</html>
+
+<script src="~/Content/Assests/js/jquery-confirm.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/Assests/js/sweetalert.min.js"></script>
+<script src="~/Content/Assests/js/datepicker.js"></script>
+<script src="~/Content/Assests/js/datepicker.en.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>

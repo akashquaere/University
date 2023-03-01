@@ -1,0 +1,171 @@
+﻿@model UniversityRecruitment.Models.ApplicantModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="card-shadow-primary col-sm-12">
+                <div class="card-header">LIST OF POST FOR APPLYING</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-12">For Post Of</label>
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(m => m.PostId, new SelectList(ViewBag.PostList, "Value", "Text"), new { @class = "form-control select" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div id="_Data">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="card-shadow-primary col-sm-12">
+                <div class="card-header">LIST OF POST APPLIED</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-bordered">
+                                <tr class="table-primary">
+                                    <th>Post Code</th>
+                                    <th>Form No.</th>
+                                    <th>Post</th>
+                                    <th>Subject / Department</th>
+                                    <th>Specialization (if any)</th>
+                                    <th>Applying Category</th>
+                                    <th>Applied At</th>
+                                    <th>Fee Paid</th>
+                                    <th>Transaction Id</th>
+                                    <th>Transaction Date</th>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:130%;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body alert alert-success fade show text-center">
+                Information!
+                <br />
+                ...
+                <input type="hidden" id="post"/>
+                <input type="hidden" id="sub"/>
+                <input type="hidden" id="UR"/>
+                <input type="hidden" id="OBC"/>
+                <input type="hidden" id="SC"/>
+                <input type="hidden" id="ST"/>
+                <input type="hidden" id="EWS"/>
+                <input type="hidden" id="PWD"/>
+                <input type="hidden" id="postCode"/>
+                <input type="hidden" id="postId"/>
+                <input type="hidden" id="subAndDeptId"/>
+                <input type="hidden" id="lastDate"/>
+            </div>
+
+            <div class="modal-body text-center">
+                Applying Category<span>*</span>
+                <br />
+                @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
+                        {
+                             new SelectListItem{ Text="General", Value = "General" },
+                             new SelectListItem{ Text="OBC", Value = "OBC" },
+                             new SelectListItem{ Text="SC", Value = "SC" },
+                             new SelectListItem{ Text="ST", Value = "ST" },
+                             new SelectListItem{ Text="EWS", Value = "EWS" },
+                             new SelectListItem{ Text="PWD", Value = "PWD" },
+                        }, "-- Select --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="modal-body text-center">
+                Specialization of the post (if any) (as advertisement)
+                <br />
+                @Html.TextBoxFor(x => x.Specialization, new { @class = "form-control" })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btnSave">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("BindPostList", "Applicant")',
+             data: { postId: 0 },
+            dataType: 'Html',
+            success: function (data) {
+                if (data != null) {
+                    $("#_Data").html(data);
+                    //$(".preloader").hide();
+                }
+                else {
+                    swal("", "Somthing went wrong !", "error");
+                }
+            },
+            error: function (e) {
+            }
+        });
+
+    });
+
+    $("#PostId").on("change", function () {
+        var postId = $("#PostId").val();
+         $.ajax({
+            type: "GET",
+            url: '@Url.Action("BindPostList", "Applicant")',
+             data: { postId: postId },
+            dataType: 'Html',
+            success: function (data) {
+                debugger;
+                if (data != null) {
+                    $("#_Data").html(data);
+                    //$(".preloader").hide();
+                }
+                else {
+                    swal("", "Somthing went wrong !", "error");
+                }
+            },
+            error: function (e) {
+            }
+        });
+    });
+
+    
+
+</script>
+

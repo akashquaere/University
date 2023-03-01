@@ -1,0 +1,140 @@
+﻿@model UniversityRecruitment.Models.ApplicantModel
+
+<table class="table table-bordered">
+    <tr class="table-primary">
+        <th>Post Code</th>
+        <th>Type Of Post</th>
+        <th>Subject / Department</th>
+        <th>UR</th>
+        <th>OBC</th>
+        <th>SC</th>
+        <th>ST</th>
+        <th>EWS</th>
+        <th>PWD</th>
+        <th>Last Date</th>
+        <th style="width: 75px;"></th>
+    </tr>
+
+    @if (Model.list != null)
+    {
+        if (Model.list.Count() > 0)
+        {
+
+            foreach (var itm in Model.list)
+            {
+                <tr class=''>
+                    <td class="postCode">@itm.PostCode</td>
+                    <td style='font-weight: bold;' class="post">@itm.PostName<input type="hidden" value="@itm.PostId" class="postId"/></td>
+                    <td class="sub">@itm.SubAndDeptName<input type="hidden" value="@itm.SubAndDeptId" class="subAndDeptId" /></td>
+                    <td class="UR">@itm.UR</td>
+                    <td class="OBC">@itm.OBC</td>
+                    <td class="SC">@itm.SC</td>
+                    <td class="ST">@itm.ST</td>
+                    <td class="EWS">@itm.EWS</td>
+                    <td class="PWD">@itm.PWD</td>
+                    <td class="lastDate">@itm.LastDate</td>
+                    <td>
+                        <a class="btn btn-success btnApply" href="#">Apply</a>
+                    </td>
+                </tr>
+            }
+
+        }
+    }
+
+</table>
+
+<script>
+
+    $(".btnApply").on('click', function () {
+        debugger;
+        var tr = $(this).closest('tr');
+        var post = tr.find('.post').text();
+        var sub = tr.find('.sub').text();
+        var UR = tr.find('.UR').text();
+        var OBC = tr.find('.OBC').text();
+        var SC = tr.find('.SC').text();
+        var ST = tr.find('.ST').text();
+        var EWS = tr.find('.EWS').text();
+        var PWD = tr.find('.PWD').text();
+
+        var postCode = tr.find('.postCode').text();
+        var postId = tr.find('.postId').val();
+        var subAndDeptId = tr.find('.subAndDeptId').val();
+        var Category = tr.find('.Category').text();
+        var lastDate = tr.find('.lastDate').text();
+
+        $('#post').val(post);
+        $('#sub').val(sub);
+        $('#UR').val(UR);
+        $('#OBC').val(OBC);
+        $('#SC').val(SC);
+        $('#ST').val(ST);
+        $('#EWS').val(EWS);
+        $('#PWD').val(PWD);
+        $('#postCode').val(postCode);
+        $('#postId').val(postId);
+        $('#subAndDeptId').val(subAndDeptId);
+        $('#lastDate').val(lastDate);
+
+        //if (UR != '' && UR != null && UR != '0') {
+        //    $('#Category').val('General');
+        //} if (OBC != '' && OBC != null && OBC != '0') {
+        //    $('#Category').val('OBC');
+        //} if (SC != '' && SC != null && SC != '0') {
+        //    $('#Category').val('SC');
+        //} if (ST != '' && ST != null && ST != '0') {
+        //    $('#Category').val('ST');
+        //} if (EWS != '' && EWS != null && EWS != '0') {
+        //    $('#Category').val('EWS');
+        //} if (PWD != '' && PWD != null && PWD != '0') {
+        //    $('#Category').val('PWD');
+        //}
+
+        $("#modalTitel").text('APPLY FOR THE POST OF ' + post + ' FOR ' + sub + '');
+        $("#exampleModal").modal("show");
+
+    });
+
+    $('.btnSave').on("click", function () {
+        debugger;
+
+        var model = {};
+
+        var postCode = $('#postCode').val();
+        var post = $('#post').val();
+        var postId = $('#postId').val();
+        var subAndDeptId = $('#subAndDeptId').val();
+        var Category = $('#Category').val();
+        var lastDate = $('#lastDate').val();
+        var Specialization = $('#Specialization').val();
+
+        model.postCode = postCode;
+        model.post = post;
+        model.postId = postId;
+        model.subAndDeptId = subAndDeptId;
+        model.Category = Category;
+        model.lastDate = lastDate;
+        model.SpecializationOfThePost = Specialization;
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("saveAppliedForm", "Applicant")',
+            data: { model: model},
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                if (data != null) {
+                }
+                else {
+                    swal("", "Somthing went wrong !", "error");
+                }
+            },
+            error: function (e) {
+            }
+        });
+
+    })
+
+</script>

@@ -1,0 +1,170 @@
+﻿@using UniversityRecruitment.Utilities
+@{
+    SessionManager sm = new SessionManager();
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dashboard : Student</title>
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery-confirm.css" rel="stylesheet" />
+    <link href="~/Content/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/colors/blue.css" id="" rel="stylesheet">
+    <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <b> <img src="~/Content/images/logo-icon.png" alt="Logo" class="dark-logo" /> </b> <span>
+                            <img src="~/Content/images/logo-text.png" alt="Logo" class="dark-logo" />
+                        </span>
+                    </a>
+                </div>
+
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item hidden-sm-down search-box">
+                            @*<a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>*@
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter">
+                                <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/Content/images/user.png" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right scale-up">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="~/Content/images/user.png" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4>@sm.FirstName</h4>
+                                                <p class="text-muted">@sm.Mobile</p>
+                                                @*<a href="#" class="btn btn-rounded btn-danger btn-sm">View Profile</a>*@
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+
+                                    <li><a href="#"><i class="ti-settings"></i> Change Password</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="@Url.Action("Logout","Account")"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User profile -->
+                <div class="user-profile">
+                    <!-- User profile image -->
+                    <div class="profile-img">
+                        <img src="~/Content/images/user.png" alt="user" />
+                        <!-- this is blinking heartbit-->
+                    </div>
+                    <!-- User profile text-->
+                    <div class="profile-text">
+                        <h5 class="text-white">@sm.FirstName</h5>
+                        <div class="dropdown-menu animated flipInY">
+                            <!-- text-->
+                            @*<a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>*@
+                            <!-- text-->
+                            <div class="dropdown-divider"></div>
+                            <!-- text-->
+                            <a href="#" class="dropdown-item"><i class="ti-settings"></i> Change Password</a>
+                            <!-- text-->
+                            <div class="dropdown-divider"></div>
+                            <!-- text-->
+                            <a href="@Url.Action("Logout","Account")" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                            <!-- text-->
+                        </div>
+                    </div>
+                </div>
+                <!-- End User profile text-->
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>                       
+                        <li>
+                            <a class="waves-effect waves-dark" href="@Url.Action("Index","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Apply For Post</span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            @RenderBody()
+        </div>
+
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-6">Copyright © @DateTime.Now.Year.ToString(), <strong>Mahatma Gandhi Kashi Vidyapith</strong> | All Rights Reserved </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/Content/js/jquery-confirm.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/plugins/multiselect/js/jquery.multi-select.js"></script>
+    <script src="~/Content/plugins/select2/dist/js/select2.full.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/Content/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/Content/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!--morris JavaScript -->
+    @*<script src="~/assets/plugins/raphael/raphael-min.js"></script>
+        <script src="~/assets/plugins/morrisjs/morris.min.js"></script>*@
+    <!-- sparkline chart -->
+    <script src="~/Content/plugins/sparkline/jquery.sparkline.min.js"></script>
+    @*<script src="~/assets/js/dashboard4.js"></script>*@
+    <script src="~/Content/plugins/sweetalert/sweetalert.min.js"></script>
+    <script>
+        $('.preloader').hide();
+    </script>
+
+</body>
+</html>

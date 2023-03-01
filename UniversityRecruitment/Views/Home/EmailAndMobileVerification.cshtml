@@ -1,0 +1,328 @@
+﻿@model UniversityRecruitment.Models.EmailAndMobile
+@{
+    ViewBag.Title = "EmailAndMobileVerification";
+    Layout = "~/Views/Shared/_UniversityLayout.cshtml";
+}
+
+<style>
+    .form-control {
+        height: 40px;
+    }
+    /*@@media only screen and (max-width: 1024px) {
+      .main {
+       display: block;
+      }
+    }*/
+</style>
+<section class="email pt-50 pb-50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h3 class="card-header text-center">Email / Mobile Verification</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            @Html.HiddenFor(m => m.ApplicationId)
+                            @Html.HiddenFor(m => m.EmailId)
+                            @Html.HiddenFor(m => m.Mobile)
+                            <div class="row justify-content-center">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Email :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    @Model.EmailId
+                                </div>
+
+                                <div id="EmailVerify" class="col-sm-4">
+                                    <div class="row">
+                                        <div class="col-sm-7 main">
+                                            <input type="text" autocomplete="off" id="EmailOtp" class="form-control" placeholder="Enter otp" />
+                                            <input type="hidden" id="hdnEmailOtpValue" />
+                                        </div>
+                                        <div class="col-sm-5 main">
+                                            <a id="btnVerifyEmail" class="btn btn-danger" href="#">Verify</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="EmailVerified" class="col-sm-4">
+                                    <span class="badge badge-success text-dark shadow"><span class="fa fa-check-circle"></span>Email Verified</span>
+                                </div>
+
+                            </div>
+                        </form>
+                        <form class="mt-2">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Mobile :</label>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    @Model.Mobile
+                                </div>
+
+                                <div id="MobileVerify" class="col-sm-4">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <input type="text" autocomplete="off" id="MobileOtp" class="form-control" placeholder="Enter otp" />
+                                            <input type="hidden" id="hdnMobileOtpValue" />
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <a id="btnVerifyMobile" class="btn btn-danger" href="#">Verify</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="MobileVerified" class="col-sm-4">
+                                    <span class="badge badge-success text-dark shadow"><span class="fa fa-check-circle"></span>Mobile Verified</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="LoginLink" class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <a class="btn btn-warning text-dark shadow" href="/home/Login"><span class="fa fa-lock"></span> Click here to login</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@*<div class="col-sm-6 offset-sm-3 card">
+        <div class="card-body">
+            <h5 class="card-title">Email / Mobile Verification</h5>
+            <br />
+            @Html.HiddenFor(m=>m.ApplicationId)
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">Email :</div>
+                    <div class="col-sm-6">
+                        @Model.EmailId
+                    </div>
+
+                    <div id="EmailVerify" class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <input type="text" autocomplete="off" id="EmailOtp" class="form-control" placeholder="Enter otp" />
+                            </div>
+                            <div class="col-sm-5">
+                                <a id="btnVerifyEmail" class="btn btn-danger" href="#">Verify</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="EmailVerified" class="col-sm-4">
+                        <span class="badge badge-success text-dark shadow"><span class="fa fa-check-circle"></span>Email Verified</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">Mobile :</div>
+                    <div class="col-sm-6">
+                        @Model.Mobile
+                    </div>
+
+                    <div id="MobileVerify" class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <input type="text" autocomplete="off" id="MobileOtp" class="form-control" placeholder="Enter otp" />
+                            </div>
+                            <div class="col-sm-5">
+                                <a id="btnVerifyMobile" class="btn btn-danger" href="#">Verify</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="MobileVerified" class="col-sm-4">
+                        <span class="badge badge-success text-dark shadow"><span class="fa fa-check-circle"></span>Mobile Verified</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>*@
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#EmailVerified").hide();
+        $("#MobileVerified").hide();
+        $("#LoginLink").hide();
+
+    })
+
+    $("#btnVerifyEmail").click(function () {
+        var ApplicationId = $("#ApplicationId").val();
+        var Email = $("#EmailId").val();
+        var EmailOtp = $("#EmailOtp").val();
+        debugger;
+        if (EmailOtp != "" && EmailOtp != null && EmailOtp != undefined && typeof (EmailOtp) != undefined) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("validateEmailOtp", "Home")',
+                data: { ApplicationId: ApplicationId, Otp: EmailOtp },
+                dataType: 'json',
+                success: function (data) {
+                    if (data == "success") {
+                        $.confirm({
+                            title: 'Success',
+                            content: 'OTP Verified successfully.',
+                            buttons: {
+                                Ok: function () {
+
+                                }
+                            }
+                        });
+                        $("#EmailVerified").show();
+                        $("#EmailVerify").hide();
+                        $("#hdnEmailOtpValue").val(1);
+                        //var value = $("#hdnEmailOtpValue").val();
+                        if ($("#hdnEmailOtpValue").val() == "1" && $("#hdnMobileOtpValue").val() == "1") {
+                            $("#LoginLink").show();
+                        }
+                        else {
+                            $("#LoginLink").hide();
+                        }
+                    }
+                    else if (data == 'Incorrect Otp') {
+                        $.confirm({
+                            title: 'Info',
+                            content: 'Incorrect OTP !',
+                            buttons: {
+                                Ok: function () {
+
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        $.confirm({
+                            title: 'Error',
+                            content: 'Some problem occur while validating OTP !',
+                            buttons: {
+                                Ok: function () {
+
+                                }
+                            }
+                        });
+                    }
+                },
+                error: function (e) {
+                    $.confirm({
+                        title: 'Error',
+                        content: 'Somthing went wrong !',
+                        buttons: {
+                            Ok: function () {
+
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            $.confirm({
+                title: 'Error',
+                content: 'Please Enter Email OTP',
+                buttons: {
+                    Ok: function () {
+
+                    }
+                }
+            });
+        }
+    })
+
+    $("#btnVerifyMobile").click(function () {
+        var ApplicationId = $("#ApplicationId").val();
+        var Mobile = $("#Mobile").val();
+        var MobileOtp = $("#MobileOtp").val();
+        debugger;
+        if (MobileOtp != "" && MobileOtp != null && MobileOtp != undefined && typeof (MobileOtp) != undefined) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("validateMobileOtp", "Home")',
+                data: { ApplicationId: ApplicationId, Otp: MobileOtp },
+                dataType: 'json',
+                success: function (data) {
+                    if (data == "success") {
+                        $.confirm({
+                            title: 'Success',
+                            content: 'OTP Verified successfully.',
+                            buttons: {
+                                Ok: function () {
+
+                                }
+                            }
+                        });
+                        $("#MobileVerified").show();
+                        $("#MobileVerify").hide();
+                        $("#hdnEmailOtpValue").val(1);
+                        //var value = $("#hdnEmailOtpValue").val();
+                        if ($("#hdnEmailOtpValue").val() == "1" && $("#hdnMobileOtpValue").val() == "1") {
+                            $("#LoginLink").show();
+                        }
+                        else {
+                            $("#LoginLink").hide();
+                        }
+                    }
+                    else if (data == 'Incorrect Otp') {
+                        $.confirm({
+                            title: 'Info',
+                            content: 'Incorrect OTP !',
+                            buttons: {
+                                Ok: function () {
+
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        $.confirm({
+                            title: 'Error',
+                            content: 'Some problem occur while validating OTP !',
+                            buttons: {
+                                Ok: function () {
+
+                                }
+                            }
+                        });
+                    }
+                },
+                error: function (e) {
+                    $.confirm({
+                        title: 'Error',
+                        content: 'Somthing went wrong !',
+                        buttons: {
+                            Ok: function () {
+
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            $.confirm({
+                title: 'Error',
+                content: 'Please Enter Mobile OTP',
+                buttons: {
+                    Ok: function () {
+
+                    }
+                }
+            });
+        }
+
+    })
+
+</script>
+
