@@ -49,5 +49,27 @@ namespace UniversityRecruitment.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+       
+        public ActionResult PersonalDetails()
+        {
+            return View();
+        }
+
+        public ActionResult UploadPhoto()
+        {
+            return View();
+        }
+        public ActionResult AcademicDetails()
+        {
+            return View();
+        }
+
+        public ActionResult Experience()
+        {
+            return View();
+        }
+
+
+
     }
 }

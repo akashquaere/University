@@ -1,0 +1,309 @@
+﻿
+@{
+    ViewBag.Title = "AcademicDetails";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">
+            Academic Details
+        </h3>
+        <p>Enter academic details and degree information.</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4 class="m-b-0 text-white"><b>EDUCATIONAL QUALIFICATION</b></h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Qualification</label>
+                                <div class="col-sm-12">
+                                    <select name=" " class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="10th Class/ Equivalent">10th Class/ Equivalent</option>
+                                        <option value="10+2 / Hr. Sec. Equivalent">10+2 / Hr. Sec. Equivalent</option>
+                                        <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                        <option value="Master's Degree">Master's Degree</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Name of Course</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" id="divSpecialization" style="display: none;">
+                            <div class="form-group">
+                                <label for="body" class="col-sm-12">Specialization (If Any)</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Name of Board / University</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Year Passed</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" onkeypress="return NumberOnly(event);">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Division</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="First">First</option>
+                                        <option value="Second">Second</option>
+                                        <option value="Third">Third</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">CGPA (for grading system)</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">% of marks (indicate equiv. to CGPA also)</label>
+                                <div class="col-sm-12">
+                                    <input name="ctl00$body$txtEduPercentage" type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 ">Subject Studied</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href="#" style="width: 100%;"><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <th></th>
+                                        <th>Name of Course</th>
+                                        <th>Specialization (If Any)</th>
+                                        <th>Name of Board / University</th>
+                                        <th>Year Passed</th>
+                                        <th>Division</th>
+                                        <th>CGPA</th>
+                                        <th>% of Marks</th>
+                                        <th>Subject Studied</th>
+                                        <th>Attachment</th>
+                                        <th></th>
+                                    </tr>
+
+                                    <tr class="">
+                                        <td>Bachelor's Degree</td>
+                                        <td>Electroniocs Engg</td>
+                                        <td></td>
+                                        <td>IETE</td>
+                                        <td>2001</td>
+                                        <td>First</td>
+                                        <td>8.50</td>
+                                        <td>77.00</td>
+                                        <td>Digital Electronocs,Advance Computers</td>
+                                        <td>
+                                            <a href="#" target="_blank">Open Attachment</a>
+                                        </td>
+                                        <td style="width: 95px;">
+                                            <a class="badge badge-danger shadow" href="#"><span class="fa fa-times-circle"></span> delete</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4 class="m-b-0 text-white"><b>UGC NET / JRF / SLET DETAILS</b></h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Exam</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="NET with JRF">NET with JRF</option>
+                                        <option value="NET">NET</option>
+                                        <option value="SLET/SET">SLET/SET</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 ">Subject</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 ">Roll No.</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Year</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 required">Upload Document</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqEntUpload" class="validator" style="display:none;">upload document</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <th></th>
+                                        <th>Subject</th>
+                                        <th>Roll No.</th>
+                                        <th>Year</th>
+                                        <th>Attachment</th>
+                                        <th></th>
+                                    </tr>
+
+                                    <tr class="">
+                                        <td>NET</td>
+                                        <td>Electronics Engg</td>
+                                        <td>9839039354</td>
+                                        <td>2022</td>
+                                        <td>
+                                            <a href="#">Open Attachment</a>
+                                        </td>
+                                        <td style="width: 95px;">
+                                            <a class="badge badge-danger shadow" href="#"><span class="fa fa-times-circle"></span> delete</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#"><span class="fa fa-save"></span> Save</a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
