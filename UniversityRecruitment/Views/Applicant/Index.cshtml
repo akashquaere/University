@@ -16,16 +16,58 @@
                         <div class="form-group">
                             <label class="col-sm-12">For Post Of</label>
                             <div class="col-md-12">
-                                @Html.DropDownListFor(m => m.PostId, new SelectList(ViewBag.PostList, "Value", "Text"), new { @class = "form-control select" })
+                                @Html.DropDownListFor(m => m.PostTypeId, new SelectList(ViewBag.PostList, "Value", "Text"), new { @class = "form-control select" })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <div id="_Data">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="table-primary">
+                                        <th>Post Code</th>
+                                        <th>Type Of Post</th>
+                                        <th>Subject / Department</th>
+                                        <th>UR</th>
+                                        <th>OBC</th>
+                                        <th>SC</th>
+                                        <th>ST</th>
+                                        <th>EWS</th>
+                                        <th>PWD</th>
+                                        <th>Last Date</th>
+                                        <th style="width: 75px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.list != null)
+                                    {
+                                        if (Model.list.Count() > 0)
+                                        {
 
-                            </div>
+                                            foreach (var itm in Model.list)
+                                            {
+                                                <tr class=''>
+                                                    <td class="postCode">@itm.Code</td>
+                                                    <td style='font-weight: bold;' class="post">@itm.PostName<input type="hidden" value="@itm.PostTypeId" class="postId" /></td>
+                                                    <td class="sub">@itm.PostName</td>
+                                                    <td class="UR">@itm.UR</td>
+                                                    <td class="OBC">@itm.OBC</td>
+                                                    <td class="SC">@itm.SC</td>
+                                                    <td class="ST">@itm.ST</td>
+                                                    <td class="EWS">@itm.EWS</td>
+                                                    <td class="PWD">@itm.PWD</td>
+                                                    <td class="lastDate">@itm.FormLastDate</td>
+                                                    <td>
+                                                        <a class="btn btn-success btnApply" href="#">Apply</a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    }
+                                </tbody>
+                            </table>
 
                         </div>
                     </div>
@@ -41,18 +83,53 @@
                         <div class="col-sm-12">
 
                             <table class="table table-bordered">
-                                <tr class="table-primary">
-                                    <th>Post Code</th>
-                                    <th>Form No.</th>
-                                    <th>Post</th>
-                                    <th>Subject / Department</th>
-                                    <th>Specialization (if any)</th>
-                                    <th>Applying Category</th>
-                                    <th>Applied At</th>
-                                    <th>Fee Paid</th>
-                                    <th>Transaction Id</th>
-                                    <th>Transaction Date</th>
-                                </tr>
+                                <thead>
+                                    <tr class="table-primary">
+                                        <th>Post Code</th>
+                                        <th>Form No.</th>
+                                        <th>Post</th>
+                                        <th>Subject / Department</th>
+                                        <th>Specialization (if any)</th>
+                                        <th>Applying Category</th>
+                                        <th>Applied At</th>
+                                        <th>Fee Paid</th>
+                                        <th>Transaction Id</th>
+                                        <th>Transaction Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.list != null)
+                                    {
+                                        if (Model.list.Count() > 0)
+                                        {
+
+                                            foreach (var itm in Model.list1)
+                                            {
+                                                <tr class=''>
+                                                    <td>@itm.PostCode</td>
+                                                    <td style='font-weight: bold;'>@itm.FormNo</td>
+                                                    <td>@itm.PostType</td>
+                                                    <td>@itm.PostName</td>
+                                                    <td>@itm.Specialization</td>
+                                                    <td>@itm.ApplyingCategory</td>
+                                                    <td>@itm.SystemDate</td>
+                                                    @if (itm.FeePaid == 0)
+                                                    {
+                                                        <td>Flase</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>True</td>
+                                                    }
+
+                                                    <td>@itm.TransactionId</td>
+                                                    <td>@itm.TransactionDate</td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    }
+                                </tbody>
 
                             </table>
 
@@ -78,18 +155,18 @@
                 Information!
                 <br />
                 ...
-                <input type="hidden" id="post"/>
-                <input type="hidden" id="sub"/>
-                <input type="hidden" id="UR"/>
-                <input type="hidden" id="OBC"/>
-                <input type="hidden" id="SC"/>
-                <input type="hidden" id="ST"/>
-                <input type="hidden" id="EWS"/>
-                <input type="hidden" id="PWD"/>
-                <input type="hidden" id="postCode"/>
-                <input type="hidden" id="postId"/>
-                <input type="hidden" id="subAndDeptId"/>
-                <input type="hidden" id="lastDate"/>
+                <input type="hidden" id="post" />
+                <input type="hidden" id="sub" />
+                <input type="hidden" id="UR" />
+                <input type="hidden" id="OBC" />
+                <input type="hidden" id="SC" />
+                <input type="hidden" id="ST" />
+                <input type="hidden" id="EWS" />
+                <input type="hidden" id="PWD" />
+                <input type="hidden" id="postCode" />
+                <input type="hidden" id="postId" />
+                <input type="hidden" id="subAndDeptId" />
+                <input type="hidden" id="lastDate" />
             </div>
 
             <div class="modal-body text-center">
@@ -122,11 +199,11 @@
 
 <script>
 
-    $(document).ready(function () {
+    @*$(document).ready(function () {
         $.ajax({
             type: "GET",
             url: '@Url.Action("BindPostList", "Applicant")',
-             data: { postId: 0 },
+            data: { PostTypeId: '' },
             dataType: 'Html',
             success: function (data) {
                 if (data != null) {
@@ -141,14 +218,14 @@
             }
         });
 
-    });
+    });*@
 
-    $("#PostId").on("change", function () {
-        var postId = $("#PostId").val();
+    $("#PostTypeId").on("change", function () {
+        var PostTypeId = $("#PostTypeId").val();
          $.ajax({
             type: "GET",
             url: '@Url.Action("BindPostList", "Applicant")',
-             data: { postId: postId },
+             data: { PostTypeId: PostTypeId },
             dataType: 'Html',
             success: function (data) {
                 debugger;
@@ -165,7 +242,96 @@
         });
     });
 
-    
+        $(".btnApply").on('click', function () {
+        debugger;
+        var tr = $(this).closest('tr');
+        var post = tr.find('.post').text();
+        var sub = tr.find('.sub').text();
+        var UR = tr.find('.UR').text();
+        var OBC = tr.find('.OBC').text();
+        var SC = tr.find('.SC').text();
+        var ST = tr.find('.ST').text();
+        var EWS = tr.find('.EWS').text();
+        var PWD = tr.find('.PWD').text();
+
+        var postCode = tr.find('.postCode').text();
+        var postId = tr.find('.postId').val();
+        var subAndDeptId = tr.find('.subAndDeptId').val();
+        var Category = tr.find('.Category').text();
+        var lastDate = tr.find('.lastDate').text();
+
+        $('#post').val(post);
+        $('#sub').val(sub);
+        $('#UR').val(UR);
+        $('#OBC').val(OBC);
+        $('#SC').val(SC);
+        $('#ST').val(ST);
+        $('#EWS').val(EWS);
+        $('#PWD').val(PWD);
+        $('#postCode').val(postCode);
+        $('#postId').val(postId);
+        $('#subAndDeptId').val(subAndDeptId);
+        $('#lastDate').val(lastDate);
+
+        //if (UR != '' && UR != null && UR != '0') {
+        //    $('#Category').val('General');
+        //} if (OBC != '' && OBC != null && OBC != '0') {
+        //    $('#Category').val('OBC');
+        //} if (SC != '' && SC != null && SC != '0') {
+        //    $('#Category').val('SC');
+        //} if (ST != '' && ST != null && ST != '0') {
+        //    $('#Category').val('ST');
+        //} if (EWS != '' && EWS != null && EWS != '0') {
+        //    $('#Category').val('EWS');
+        //} if (PWD != '' && PWD != null && PWD != '0') {
+        //    $('#Category').val('PWD');
+        //}
+
+        $("#modalTitel").text('APPLY FOR THE POST OF ' + post + ' FOR ' + sub + '');
+        $("#exampleModal").modal("show");
+
+    });
+
+    $('.btnSave').on("click", function () {
+        debugger;
+
+        var model = {};
+
+        var postCode = $('#postCode').val();
+        var post = $('#post').val();
+        var postId = $('#postId').val();
+        var subAndDeptId = $('#subAndDeptId').val();
+        var Category = $('#Category').val();
+        var lastDate = $('#lastDate').val();
+        var Specialization = $('#Specialization').val();
+
+        model.postCode = postCode;
+        model.post = post;
+        model.postId = postId;
+        model.subAndDeptId = subAndDeptId;
+        model.Category = Category;
+        model.lastDate = lastDate;
+        model.SpecializationOfThePost = Specialization;
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("saveAppliedForm", "Applicant")',
+            data: { model: model},
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                if (data != null) {
+                }
+                else {
+                    swal("", "Somthing went wrong !", "error");
+                }
+            },
+            error: function (e) {
+            }
+        });
+
+    })
 
 </script>
 

@@ -159,8 +159,8 @@
                                 @Html.ValidationMessageFor(m => m.PermanentStateId, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-sm-12" id="stateOther" style="display:none;">
-                                @Html.TextBoxFor(m => m.PermanentStateOther, new { @class = "form-control" })
-                                <span id="sOtherError" class="form-control"></span>
+                                @Html.TextBoxFor(m => m.PermanentStateOther, new { @class = "form-control", @placeholder="Enter value" })
+                                <span id="sOtherError" class = "text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -170,8 +170,8 @@
                                 @Html.ValidationMessageFor(m => m.PermanentCityId, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-sm-12" id="cityOther" style="display:none;">
-                                @Html.TextBoxFor(m => m.PermanentCityOther, new { @class = "form-control" })
-                                <span id="cOtherError" class="form-control"></span>
+                                @Html.TextBoxFor(m => m.PermanentCityOther, new { @class = "form-control", @placeholder = "Enter value" })
+                                <span id="cOtherError" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -188,8 +188,8 @@
                         <div class="col-sm-6">
                             <label class="col-sm-12 required">Email ID <span>*</span></label>
                             <div class="col-sm-12">
-                                @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -254,7 +254,7 @@
 
                 <div class="col-sm-12 center text-center">
                     @*<input type="submit" value="Register Me" class="btn btn-success" />*@
-                    <button type="button" class="btn btn-success">Register Me</button>
+                    <button type="button" class="btn btn-success" onclick="validate()">Register Me</button>
                 </div>
 
             </div>
@@ -274,8 +274,11 @@
 
         var stateOther = $("#PermanentStateId option:selected").text();
 
-        if (stateOther.toLowerCase() == "other" ) {
+        if (stateOther.toLowerCase() == "other") {
             $("#stateOther").show();
+        }
+        else {
+            $("#stateOther").hide();
         }
 
         LoadCourse($("#PermanentStateId").val(), "", "PermanentCityId");
@@ -284,10 +287,13 @@
     $("#PermanentCityId").on("change", function () {
         debugger;
 
-        var stateOther = $("#PermanentCityId option:selected").text();
+        var cityOther = $("#PermanentCityId option:selected").text();
 
-        if (stateOther.toLowerCase() == "other") {
+        if (cityOther.toLowerCase() == "other") {
             $("#cityOther").show();
+        }
+        else {
+            $("#cityOther").hide();
         }
 
     });
@@ -321,15 +327,24 @@
     }
 
     function validate() {
-
-        var PermanentCityOther =  $('#PermanentCityOther').val();
+        debugger;
+        var PermanentCityOther = $('#PermanentCityOther').val();
+        var cityOther = $("#PermanentCityId option:selected").text();
+        var stateOther = $("#PermanentStateId option:selected").text();
         var PermanentStateOther = $('#PermanentStateOther').val();
 
-        if (PermanentCityOther == "" || PermanentCityOther == null || PermanentCityOther == undefined || typeof (PermanentCityOther) == undefined && PermanentStateOther == "" || PermanentStateOther == null || PermanentStateOther == undefined || typeof (PermanentStateOther) == undefined) {
+        if (stateOther.toLowerCase() == "other" || cityOther.toLowerCase() == "other") {
+            if (PermanentCityOther == "" || PermanentCityOther == null || PermanentCityOther == undefined || typeof (PermanentCityOther) == undefined && PermanentStateOther == "" || PermanentStateOther == null || PermanentStateOther == undefined || typeof (PermanentStateOther) == undefined) {
 
-            $('#sOtherError').text('Enter value')
-            $('#cOtherError').text('Enter value')
+                $('#sOtherError').text('Enter value')
+                $('#cOtherError').text('Enter value')
 
+            }
+            else {
+                $('#sOtherError').text('')
+                $('#cOtherError').text('')
+                $('#regForm').submit();
+            }
         }
         else {
 

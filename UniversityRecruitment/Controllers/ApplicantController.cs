@@ -16,25 +16,33 @@ namespace UniversityRecruitment.Controllers
         ApplicantDB apdb = new ApplicantDB();
         SessionManager sm = new SessionManager();
 
-        public ActionResult Index()
+        public ActionResult Index(string  PostTypeId)
         {
             ApplicantModel model = new ApplicantModel();
             ViewBag.PostList = apdb.PostList();
-            return View(model);
-        }
-
-        public PartialViewResult BindPostList(int postId)
-        {
-            ApplicantModel model = new ApplicantModel();
-            if (postId != 0)
+            if (!String.IsNullOrEmpty(PostTypeId))
             {
-                model.list = apdb.ListOfPostForApplying<ApplicantModel>(postId);
+                model = apdb.ListOfPostForApplying(PostTypeId, sm.userId);
             }
             else
             {
-                model.list = apdb.ListOfPostForApplying<ApplicantModel>(1);
+                model = apdb.ListOfPostForApplying("PROF", sm.userId);
             }
-            return PartialView("_PostList", model);
+            return View(model);
+        }
+
+        public PartialViewResult BindPostList(string PostTypeId)
+        {
+            var res = new ApplicantModel();
+            if (!String.IsNullOrEmpty(PostTypeId))
+            {
+                res = apdb.ListOfPostForApplying(PostTypeId, sm.userId);
+            }
+            else
+            {
+                res = apdb.ListOfPostForApplying("PROF",sm.userId);
+            }
+            return PartialView("_PostList", res);
         }
 
         [HttpPost]

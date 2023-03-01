@@ -52,23 +52,25 @@ namespace UniversityRecruitment.DBContext
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("FirstName", model.FirstName, DbType.String);
                 dynamicParameters.Add("MiddleName", model.MiddleName, DbType.String);
-                dynamicParameters.Add("Surname", model.Surname, DbType.String);
+                dynamicParameters.Add("LastName", model.Surname, DbType.String);
                 dynamicParameters.Add("FatherName", model.FatherName, DbType.String);
                 dynamicParameters.Add("MotherName", model.MotherName, DbType.String);
-                dynamicParameters.Add("DateOfBirth", model.DOB, DbType.String);
-                dynamicParameters.Add("AddharNo", model.AddharNo, DbType.String);
+                dynamicParameters.Add("Dob", model.DOB, DbType.String);
+                dynamicParameters.Add("Aadhar", model.AddharNo, DbType.String);
                 dynamicParameters.Add("Gender", model.Gender, DbType.String);
                 dynamicParameters.Add("Category", model.Category, DbType.String);
-                dynamicParameters.Add("Address1", model.PermanentAddress1, DbType.String);
-                dynamicParameters.Add("Address2", model.PermanentAddress2, DbType.String);
-                dynamicParameters.Add("StateId", model.PermanentStateId, DbType.String);
-                dynamicParameters.Add("CityId", model.PermanentCityId, DbType.String);
-                dynamicParameters.Add("PinCode", model.PinCode, DbType.String);
-                dynamicParameters.Add("EmailId", model.EmailId, DbType.String);
+                dynamicParameters.Add("PermanentAddress1", model.PermanentAddress1, DbType.String);
+                dynamicParameters.Add("PermanentAddress2", model.PermanentAddress2, DbType.String);
+                dynamicParameters.Add("PermanentStateId", model.PermanentStateId, DbType.String);
+                dynamicParameters.Add("PermanentStateOther", model.PermanentStateOther, DbType.String);
+                dynamicParameters.Add("PermanentCityId", model.PermanentCityId, DbType.String);
+                dynamicParameters.Add("PermanentCityOther", model.PermanentCityOther, DbType.String);
+                dynamicParameters.Add("PermanentPinCode", model.PinCode, DbType.String);
+                dynamicParameters.Add("Email", model.Email, DbType.String);
                 dynamicParameters.Add("Mobile", model.Mobile, DbType.String);
                 dynamicParameters.Add("Password", model.Password, DbType.String);
-                dynamicParameters.Add("Ip", model.Ip, DbType.String);
-                var res = _dapper.ExecuteGet<T>("Proc_RegistrationApplication", dynamicParameters);
+                dynamicParameters.Add("IpAddress", model.Ip, DbType.String);
+                var res = _dapper.ExecuteGet<T>("RegisterApplicant", dynamicParameters);
                 return res;
             }
             catch (Exception ex)
@@ -84,7 +86,9 @@ namespace UniversityRecruitment.DBContext
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("LoginId", model.LoginId, DbType.String);
                 dynamicParameters.Add("Password", model.Password, DbType.String);
-                var res = _dapper.ExecuteGet<T>("Proc_CheckAuthorization", dynamicParameters);
+                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                dynamicParameters.Add("DeviceType", "M", DbType.String);
+                var res = _dapper.ExecuteGet<T>("ValidateApplicantLogin", dynamicParameters);
                 return res;
             }
             catch (Exception ex)

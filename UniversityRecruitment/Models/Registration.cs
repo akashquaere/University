@@ -8,7 +8,7 @@ namespace UniversityRecruitment.Models
 {
     public class Registration
     {
-        public int ApplicationId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Please Enter First Name")]
         public string FirstName { get; set; }
@@ -52,7 +52,7 @@ namespace UniversityRecruitment.Models
         public string PinCode { get; set; }
 
         [Required(ErrorMessage = "Please Enter Email Id")]
-        public string EmailId { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Mobile Number")]
         public string Mobile { get; set; }
@@ -70,9 +70,9 @@ namespace UniversityRecruitment.Models
 
         public string Ip { get; set; }
 
-        public int Flag { get; set; }
+        public int ResponseCode { get; set; }
 
-        public string msg { get; set; }
+        public string ResponseMessage { get; set; }
 
         public string Name { get; set; }
 

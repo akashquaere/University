@@ -157,8 +157,8 @@ E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\bin\System.Web.WebPag
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\bin\Newtonsoft.Json.xml
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\bin\Antlr3.Runtime.pdb
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\obj\Debug\UniversityRecruitment.csproj.AssemblyReference.cache
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\obj\Debug\UniversityRecruitment.csproj.CoreCompileInputs.cache
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\obj\Debug\UniversityRecruitment.csproj.CopyComplete
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\obj\Debug\UniversityRecruitment.dll
 E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\obj\Debug\UniversityRecruitment.pdb
+E:\Abhishek Ojha\UniversityRecutment\UniversityRecruitment\obj\Debug\UniversityRecruitment.csproj.AssemblyReference.cache
