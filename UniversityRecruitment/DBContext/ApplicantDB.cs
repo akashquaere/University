@@ -7,12 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UniversityRecruitment.Models;
+using UniversityRecruitment.Utilities;
 
 namespace UniversityRecruitment.DBContext
 {
     public class ApplicantDB
     {
         DapperDbContext _dapper = new DapperDbContext();
+        SessionManager sm = new SessionManager();
 
         public List<SelectListItem> PostList()
         {
@@ -48,13 +50,13 @@ namespace UniversityRecruitment.DBContext
             try
             {
                 DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("FormNumber", model.FormNumber, DbType.Int32);
-                dynamicParameters.Add("postCode", model.postCode, DbType.Int32);
-                dynamicParameters.Add("PostId", model.postId, DbType.Int32);
-                dynamicParameters.Add("subAndDeptId", model.subAndDeptId, DbType.Int32);
-                dynamicParameters.Add("Category", model.Category, DbType.Int32);
-                dynamicParameters.Add("SpecializationOfThePost", model.SpecializationOfThePost, DbType.Int32);
-                var res = _dapper.ExecuteGet<T>("Proc_ListOfPostForApplying", dynamicParameters);
+                dynamicParameters.Add("Id", model.UserId, DbType.Int32);
+                dynamicParameters.Add("PostCode", model.postCode, DbType.Int32);
+                dynamicParameters.Add("ApplyingCategory", model.Category, DbType.Int32);
+                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory, DbType.Int32);
+                dynamicParameters.Add("Specialization", model.SpecializationOfThePost, DbType.Int32);
+                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.Int32);
+                var res = _dapper.ExecuteGet<T>("ApplyForPost", dynamicParameters);
                 return res;
             }
             catch (Exception ex)

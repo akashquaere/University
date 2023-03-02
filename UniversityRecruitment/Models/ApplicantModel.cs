@@ -60,6 +60,7 @@ namespace UniversityRecruitment.Models
         public int postId { get; set; }
         public int subAndDeptId { get; set; }
         public string Category { get; set; }
+        public string SubCategory { get; set; }
         public string lastDate { get; set; }
         public string SpecializationOfThePost { get; set; }
         public string AppliedDate { get; set; }
@@ -69,6 +70,7 @@ namespace UniversityRecruitment.Models
         public long UserId { get; set; }
         public string msg { get; set; }
         public string FormNumber { get; set; }
+        public string IpAddress { get; set; }
     }
 
     public class postListPara
