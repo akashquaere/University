@@ -361,7 +361,43 @@ namespace UniversityRecruitment.Utilities
             }
         }
 
+        public Int32 EmailVerified
+        {
+            get
+            {
+                if (HttpContext.Current.Session["EmailVerified"] != null)
+                {
+                    return Convert.ToInt32(HttpContext.Current.Session["EmailVerified"].ToString());
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                HttpContext.Current.Session["EmailVerified"] = value;
+            }
+        }
 
+        public Int32 MobileVerified
+        {
+            get
+            {
+                if (HttpContext.Current.Session["MobileVerified"] != null)
+                {
+                    return Convert.ToInt32(HttpContext.Current.Session["MobileVerified"].ToString());
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                HttpContext.Current.Session["MobileVerified"] = value;
+            }
+        }
 
 
 

@@ -141,18 +141,25 @@ namespace UniversityRecruitment.Controllers
                     string otp = (rnd.Next(100000, 999999)).ToString();
                     model.Ip = Common.GetIPAddress();
                     obj = acdb.RegistrationApplication<Registration>(model);
-                    Session["ApplicationId"] = obj.ApplicationId;
-                    Session["Mobile"] = obj.Mobile;
-                    Session["EmailId"] = obj.EmailId;
-                    string Message2 = SMS.otpMessageForRegistration(obj.Name, otp);
-                    string mobile = obj.Mobile;
-                    string status = SMS.SendSMS(mobile, Message2, ConfigurationManager.AppSettings["TEMP-Examotp"].ToString());
-                    if (status == "OK")
+                    if (obj.ResponseCode != 0)
                     {
-                        int a = acdb.InsertOtp<int>(otp, "Application Registration", "Mobile", Message2, obj.ApplicationId);
+                        CreateResponse("", "", obj.ResponseMessage, ResponseType.Success);
                     }
-                    string response = sendEmailOTP(obj.ApplicationId, obj.EmailId);
-                    CreateResponse("EmailAndMobileVerification", "Home", "Please verify Phone No. & Email Id through OTP.", "success");
+                    else
+                    {
+                        Session["ApplicationId"] = obj.Id;
+                        Session["Mobile"] = obj.Mobile;
+                        Session["EmailId"] = obj.Email;
+                        string Message2 = SMS.otpMessageForRegistration(obj.Name, otp);
+                        string mobile = obj.Mobile;
+                        string status = SMS.SendSMS(mobile, Message2, ConfigurationManager.AppSettings["TEMP-Examotp"].ToString());
+                        if (status == "OK")
+                        {
+                            int a = acdb.InsertOtp<int>(otp, "Application Registration", "Mobile", Message2, obj.Id);
+                        }
+                        string response = sendEmailOTP(obj.Id, obj.Email);
+                        CreateResponse("EmailAndMobileVerification", "Home", "Please verify Phone No. & Email Id through OTP.", ResponseType.Success);
+                    }
                 }
                 else
                 {
@@ -188,31 +195,22 @@ namespace UniversityRecruitment.Controllers
             Login obj = new Login();
             if (ModelState.IsValid)
             {
+                model.IpAddress = Common.GetIPAddress();
                 obj = acdb.CheckAuthorization<Login>(model);
-                if (obj.Flag == 1)
+                if (obj.ResponseCode == 0)
                 {
-                    sm.FirstName = obj.FirstName;
-                    sm.MiddleName = obj.MiddleName;
-                    sm.Surname = obj.Surname;
-                    sm.FatherName = obj.FatherName;
-                    sm.MotherName = obj.MotherName;
-                    sm.DOB = obj.DOB;
-                    sm.AddharNo = obj.AddharNo;
-                    sm.Gender = obj.Gender;
-                    sm.Category = obj.Category;
-                    sm.PermanentAddress1 = obj.PermanentAddress1;
-                    sm.PermanentStateId = obj.PermanentStateId;
-                    sm.PermanentCityId = obj.PermanentCityId;
-                    sm.PinCode = obj.PinCode;
-                    sm.EmailId = obj.EmailId;
+                    sm.userName = obj.Name;
+                    sm.EmailId = obj.Email;
+                    sm.EmailVerified = obj.EmailVerified;
+                    sm.MobileVerified = obj.MobileVerified;
                     sm.Mobile = obj.Mobile;
                     sm.Password = obj.Password;
-                    sm.userId = obj.ApplicationId;
+                    sm.userId = obj.Id;
                     return RedirectToAction("Index", "Applicant");
                 }
                 else
                 {
-                    CreateResponse("", "", obj.msg, ResponseType.Error);
+                    CreateResponse("", "", obj.ResponseMessage, ResponseType.Error);
                 }
             }
             else

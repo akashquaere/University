@@ -1,47 +1,49 @@
 ﻿@model UniversityRecruitment.Models.ApplicantModel
 
 <table class="table table-bordered">
-    <tr class="table-primary">
-        <th>Post Code</th>
-        <th>Type Of Post</th>
-        <th>Subject / Department</th>
-        <th>UR</th>
-        <th>OBC</th>
-        <th>SC</th>
-        <th>ST</th>
-        <th>EWS</th>
-        <th>PWD</th>
-        <th>Last Date</th>
-        <th style="width: 75px;"></th>
-    </tr>
-
-    @if (Model.list != null)
-    {
-        if (Model.list.Count() > 0)
+    <thead>
+        <tr class="table-primary">
+            <th>Post Code</th>
+            <th>Type Of Post</th>
+            <th>Subject / Department</th>
+            <th>UR</th>
+            <th>OBC</th>
+            <th>SC</th>
+            <th>ST</th>
+            <th>EWS</th>
+            <th>PWD</th>
+            <th>Last Date</th>
+            <th style="width: 75px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.list != null)
         {
-
-            foreach (var itm in Model.list)
+            if (Model.list.Count() > 0)
             {
-                <tr class=''>
-                    <td class="postCode">@itm.PostCode</td>
-                    <td style='font-weight: bold;' class="post">@itm.PostName<input type="hidden" value="@itm.PostId" class="postId"/></td>
-                    <td class="sub">@itm.SubAndDeptName<input type="hidden" value="@itm.SubAndDeptId" class="subAndDeptId" /></td>
-                    <td class="UR">@itm.UR</td>
-                    <td class="OBC">@itm.OBC</td>
-                    <td class="SC">@itm.SC</td>
-                    <td class="ST">@itm.ST</td>
-                    <td class="EWS">@itm.EWS</td>
-                    <td class="PWD">@itm.PWD</td>
-                    <td class="lastDate">@itm.LastDate</td>
-                    <td>
-                        <a class="btn btn-success btnApply" href="#">Apply</a>
-                    </td>
-                </tr>
+
+                foreach (var itm in Model.list)
+                {
+                    <tr class=''>
+                        <td class="postCode">@itm.Code</td>
+                        <td style='font-weight: bold;' class="post">@itm.PostName<input type="hidden" value="@itm.PostTypeId" class="postId" /></td>
+                        <td class="sub">@itm.PostName</td>
+                        <td class="UR">@itm.UR</td>
+                        <td class="OBC">@itm.OBC</td>
+                        <td class="SC">@itm.SC</td>
+                        <td class="ST">@itm.ST</td>
+                        <td class="EWS">@itm.EWS</td>
+                        <td class="PWD">@itm.PWD</td>
+                        <td class="lastDate">@itm.FormLastDate</td>
+                        <td>
+                            <a class="btn btn-success btnApply" href="#">Apply</a>
+                        </td>
+                    </tr>
+                }
+
             }
-
         }
-    }
-
+    </tbody>
 </table>
 
 <script>

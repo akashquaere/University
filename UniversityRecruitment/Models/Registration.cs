@@ -8,7 +8,7 @@ namespace UniversityRecruitment.Models
 {
     public class Registration
     {
-        public int ApplicationId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Please Enter First Name")]
         public string FirstName { get; set; }
@@ -42,15 +42,17 @@ namespace UniversityRecruitment.Models
 
         [Required(ErrorMessage = "Please Select State")]
         public int PermanentStateId { get; set; }
+        public string PermanentStateOther { get; set; }
 
         [Required(ErrorMessage = "Please Select City")]
         public int PermanentCityId { get; set; }
+        public string PermanentCityOther { get; set; }
 
         [Required(ErrorMessage = "Please Enter Pincode")]
         public string PinCode { get; set; }
 
         [Required(ErrorMessage = "Please Enter Email Id")]
-        public string EmailId { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Mobile Number")]
         public string Mobile { get; set; }
@@ -68,9 +70,9 @@ namespace UniversityRecruitment.Models
 
         public string Ip { get; set; }
 
-        public int Flag { get; set; }
+        public int ResponseCode { get; set; }
 
-        public string msg { get; set; }
+        public string ResponseMessage { get; set; }
 
         public string Name { get; set; }
 
@@ -91,9 +93,11 @@ namespace UniversityRecruitment.Models
         [Required(ErrorMessage = "Please Enter Password")]
         public string Password { get; set; }
 
-        public int ApplicationId { get; set; }
+        public int Id { get; set; }
 
         public string FirstName { get; set; }
+
+        public string Name { get; set; }
 
         public string MiddleName { get; set; }
 
@@ -121,13 +125,19 @@ namespace UniversityRecruitment.Models
 
         public string PinCode { get; set; }
 
-        public string EmailId { get; set; }
+        public string Email { get; set; }
 
         public string Mobile { get; set; }
 
-        public int Flag { get; set; }
+        public int ResponseCode { get; set; }
 
-        public string msg { get; set; }
+        public string ResponseMessage { get; set; }
+
+        public string IpAddress { get; set; }
+
+        public int EmailVerified { get; set; }
+
+        public int MobileVerified { get; set; }
 
     }
 

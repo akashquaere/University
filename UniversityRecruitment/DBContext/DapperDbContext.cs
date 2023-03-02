@@ -6,12 +6,14 @@ using System.Web;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace UniversityRecruitment.DBContext
 {
     public class DapperDbContext : IDisposable
     {
         private static string _ConnectionString = null;
+        static string connectionString = string.Empty;
 
         public DapperDbContext()
         {
@@ -28,6 +30,18 @@ namespace UniversityRecruitment.DBContext
             try
             {
                 return _ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["connectionstriing"].ToString();
+            }
+            catch (Exception)
+            {
+                //todo error handling  mechanism
+                throw;
+            }
+        }
+        public static string connect()
+        {
+            try
+            {
+                return connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             }
             catch (Exception)
             {
