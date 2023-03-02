@@ -300,5 +300,26 @@ namespace UniversityRecruitment.Controllers
             }           
         }
 
+
+        public ActionResult changePassword() {
+
+            return View();
+        }
+        public JsonResult checkPaasword(string loginId,string oldPassword)
+        {
+            AccountDb obj = new AccountDb();
+            var res = obj.checkPaas(loginId, oldPassword);
+            return Json(res, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult changePaasword(string loginId, string newPassword)
+        {
+            AccountDb obj = new AccountDb();
+            var res = obj.changePaas(loginId, newPassword);
+            return Json(res, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

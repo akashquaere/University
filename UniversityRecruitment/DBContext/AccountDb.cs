@@ -142,5 +142,44 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
+
+        public changePassword checkPaas(string loginId, string oldPassword)
+        {
+            changePassword obj = new changePassword();
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@loginId", loginId);
+                dynamicParameters.Add("@Password", oldPassword);
+                dynamicParameters.Add("@procId", 1);
+              
+               obj = _dapper.Execute<changePassword>("proc_checkPassword", dynamicParameters);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public changePassword changePaas(string loginId, string newPassword)
+        {
+            changePassword obj = new changePassword();
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@loginId", loginId);
+                dynamicParameters.Add("@Password", newPassword);
+                dynamicParameters.Add("@procId", 2);
+
+                obj = _dapper.Execute<changePassword>("proc_checkPassword", dynamicParameters);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
