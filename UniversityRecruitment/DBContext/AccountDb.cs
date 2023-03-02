@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UniversityRecruitment.Models;
+using System.Data.SqlClient;
 
 namespace UniversityRecruitment.DBContext
 {
@@ -28,7 +29,7 @@ namespace UniversityRecruitment.DBContext
                 throw;
             }
         }
-        
+
         public List<SelectListItem> CityList(int StateId)
         {
             try
@@ -78,7 +79,7 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
+
         public T CheckAuthorization<T>(Login model)
         {
             try
@@ -96,7 +97,7 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
+
         public T GetUserInformation<T>(int ApplicationId)
         {
             try
@@ -111,8 +112,8 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
-        public T InsertOtp<T>(string Otp,string Purpose, string EmailOrPhone, string MessageBody,int ApplicationId)
+
+        public T InsertOtp<T>(string Otp, string Purpose, string EmailOrPhone, string MessageBody, int ApplicationId)
         {
             try
             {
@@ -130,8 +131,8 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
-        public T ValidateOtp<T>(string Otp,int ApplicationId)
+
+        public T ValidateOtp<T>(string Otp, int ApplicationId)
         {
             try
             {
@@ -156,8 +157,8 @@ namespace UniversityRecruitment.DBContext
                 dynamicParameters.Add("@loginId", loginId);
                 dynamicParameters.Add("@Password", oldPassword);
                 dynamicParameters.Add("@procId", 1);
-              
-               obj = _dapper.Execute<changePassword>("proc_checkPassword", dynamicParameters);
+
+                obj = _dapper.Execute<changePassword>("proc_checkPassword", dynamicParameters);
                 return obj;
             }
             catch (Exception ex)
@@ -185,5 +186,81 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
+
+        public academicsDetails saveQualification(academicsDetails model)
+        {
+
+            academicsDetails obj = new academicsDetails();
+            var reader = new academicsDetails();
+
+            try
+            {
+                DynamicParameters perm = new DynamicParameters();
+                if (model.lst.Count() > 0)
+                {
+                    for (int i = 0; i < model.lst.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Qualification", model.lst[i].qualification);
+                        perm.Add("@CourseName", model.lst[i].nameOfCourse);
+                        perm.Add("@Specialization", model.lst[i].specialization);
+                        perm.Add("@BoardName", model.lst[i].nameofBoard);
+                        perm.Add("@YearPassed", Convert.ToInt32(model.lst[i].yearPassed));
+                        perm.Add("@CGPA", model.lst[i].cgpa);
+                        perm.Add("@Division", model.lst[i].divison);
+                        perm.Add("@PercentMarks", model.lst[i].perMarks);
+                        perm.Add("@SubjectStudied", model.lst[i].subjectStudied);
+                        perm.Add("@DocumentPath", model.lst[i].attachment);
+                        perm.Add("@IpAddress", model.ip);
+                        reader = _dapper.ExecuteGet<academicsDetails>("ManageApplicantQualification", perm);
+                    }
+                }
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public academicsDetails saveugcDetails(academicsDetails model)
+        {
+
+            academicsDetails obj = new academicsDetails();
+            var reader = new academicsDetails();
+
+            try
+            {
+                DynamicParameters perm = new DynamicParameters();
+                if (model.lst1.Count() > 0)
+                {
+                    for (int i = 0; i < model.lst1.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Exam", model.lst1[i].exam);
+                        perm.Add("@Subject", model.lst1[i].subject);
+                        perm.Add("@RollNo", model.lst1[i].rollno);
+                        perm.Add("@Year", model.lst1[i].year);
+                        perm.Add("@DocumentPath", model.lst1[i].uDocument);
+                
+                        perm.Add("@IpAddress", model.ip);
+                        reader = _dapper.ExecuteGet<academicsDetails>("ManageApplicantEntrance", perm);
+                    }
+                }
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
+
+
+

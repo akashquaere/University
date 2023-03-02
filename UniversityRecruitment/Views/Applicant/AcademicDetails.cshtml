@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.academicsDetails
 @{
     ViewBag.Title = "AcademicDetails";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Qualification</label>
                                 <div class="col-sm-12">
-                                    <select name=" " class="form-control">
+                                    <select name=" " class="form-control" id="quali" onchange="change()">
                                         <option value="-1">-- select --</option>
                                         <option value="10th Class/ Equivalent">10th Class/ Equivalent</option>
                                         <option value="10+2 / Hr. Sec. Equivalent">10+2 / Hr. Sec. Equivalent</option>
@@ -44,16 +44,16 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Name of Course</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="NCourse">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3" id="divSpecialization" style="display: none;">
+                        <div class="col-sm-3 d-none" id="divSpecialization" >
                             <div class="form-group">
                                 <label for="body" class="col-sm-12">Specialization (If Any)</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="specialization">
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Name of Board / University</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="nameofBoard">
 
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Year Passed</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" onkeypress="return NumberOnly(event);">
+                                    <input type="text" class="form-control" id="yearPassed">
 
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Division</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control">
+                                    <select class="form-control" id="divison">
                                         <option value="-1">-- select --</option>
                                         <option value="First">First</option>
                                         <option value="Second">Second</option>
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">CGPA (for grading system)</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" ">
+                                    <input type="text" class="form-control" id="cgpa">
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">% of marks (indicate equiv. to CGPA also)</label>
                                 <div class="col-sm-12">
-                                    <input name="ctl00$body$txtEduPercentage" type="text" class="form-control">
+                                    <input  type="text" class="form-control" id="perMarks">
 
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 ">Subject Studied</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="subjectStudied">
 
                                 </div>
                             </div>
@@ -123,7 +123,8 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control">
+                                    <input type="file" class="form-control" id="attachment">
+                                    <input type="hidden" id="hbdn" />
                                 </div>
                             </div>
                         </div>
@@ -131,7 +132,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-primary btn-shadow" href="#" style="width: 100%;"><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a class="btn btn-primary btn-shadow" href="#" style="width: 100%;" onclick="addEduQuali()"><span class="fa fa-plus-circle"></span> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -139,8 +140,8 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <table class="table table-bordered">
-                                <tbody>
+                            <table class="table table-bordered" id="tab">
+                                <thead>
                                     <tr class="table-primary">
                                         <th></th>
                                         <th>Name of Course</th>
@@ -154,8 +155,10 @@
                                         <th>Attachment</th>
                                         <th></th>
                                     </tr>
+                                </thead>
+                                <tbody id="educationaldetails">
 
-                                    <tr class="">
+                                    @*<tr class="">
                                         <td>Bachelor's Degree</td>
                                         <td>Electroniocs Engg</td>
                                         <td></td>
@@ -171,7 +174,7 @@
                                         <td style="width: 95px;">
                                             <a class="badge badge-danger shadow" href="#"><span class="fa fa-times-circle"></span> delete</a>
                                         </td>
-                                    </tr>
+                                    </tr>*@
 
                                 </tbody>
                             </table>
@@ -198,7 +201,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Exam</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control">
+                                    <select class="form-control" id="exam">
                                         <option value="-1">-- select --</option>
                                         <option value="NET with JRF">NET with JRF</option>
                                         <option value="NET">NET</option>
@@ -212,7 +215,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 ">Subject</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="sub">
 
                                 </div>
                             </div>
@@ -221,7 +224,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 ">Roll No.</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="rollno">
 
                                 </div>
                             </div>
@@ -230,7 +233,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Year</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="year">
 
                                 </div>
                             </div>
@@ -239,7 +242,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Upload Document</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control">
+                                    <input type="file" class="form-control" id="uDocument">
                                     @*<span id="body_reqEntUpload" class="validator" style="display:none;">upload document</span>*@
                                 </div>
                             </div>
@@ -248,7 +251,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a class="btn btn-primary btn-shadow" href="#" onclick="addDetails()"><span class="fa fa-plus-circle" ></span> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -256,8 +259,8 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <table class="table table-bordered">
-                                <tbody>
+                            <table class="table table-bordered" id="tables">
+                                <thead>
                                     <tr class="table-primary">
                                         <th></th>
                                         <th>Subject</th>
@@ -266,8 +269,10 @@
                                         <th>Attachment</th>
                                         <th></th>
                                     </tr>
+                                </thead>
+                                <tbody id="Pdetails">
 
-                                    <tr class="">
+                                    @*<tr class="">
                                         <td>NET</td>
                                         <td>Electronics Engg</td>
                                         <td>9839039354</td>
@@ -278,9 +283,9 @@
                                         <td style="width: 95px;">
                                             <a class="badge badge-danger shadow" href="#"><span class="fa fa-times-circle"></span> delete</a>
                                         </td>
-                                    </tr>
-
+                                    </tr>*@
                                 </tbody>
+                               
                             </table>
 
                         </div>
@@ -298,7 +303,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#"><span class="fa fa-save"></span> Save</a>
+                        <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
                         <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
@@ -306,4 +311,191 @@
         </div>
     </div>
 </div>
+
+<script>
+
+
+        function addEduQuali() {
+
+            debugger;
+            var Qu = $('#quali').val();
+            var courseName = $('#NCourse').val();
+            var specialize = $('#specialization').val();
+            var boardName = $('#nameofBoard').val();
+            var passedYear = $('#yearPassed').val();
+            var divison = $('#divison').val();
+            var cgpa = $('#cgpa').val();
+            var perMarks = $('#perMarks').val();
+            var subjectStudied = $('#subjectStudied').val();
+            var attachment = $('#attachment').val();
+            if ($('#quali').val() == "" || $('#quali').val() == null || $('#quali').val() == undefined) {
+                swal("", "please select Qualification", "warning")
+                return false;
+            }
+                 if ($('#NCourse').val() == "" || $('#NCourse').val() == null || $('#NCourse').val() == undefined) {
+                swal("", "Please enter name of course  ", "warning")
+                return false;
+            }
+                 if ($('#nameofBoard').val() == "" || $('#nameofBoard').val() == null || $('#nameofBoard').val() == undefined) {
+                swal("", "please enter name of board ", "warning")
+                return false;
+            }
+                 if ($('#divison').val() == "" || $('#divison').val() == null || $('#divison').val() == undefined) {
+                swal("", "please select divison", "warning")
+                return false;
+            }
+            if ($('#cgpa').val() == "" || $('#cgpa').val() == null || $('#cgpa').val() == undefined) {
+                swal("", "please enter CGPA ", "warning")
+                return false;
+            }
+
+       
+          
+             var row = "<tr><td class='qu'>" + Qu + "</td><td class='courseName'>" + courseName + "</td><td class='specialize'>" + specialize + "</td><td class='boardName'>" + boardName + "</td><td class='passedYear'>" + passedYear + "</td><td class='divison'>" + divison + "</td><td class='cgpa'>" + cgpa + "</td><td class='perMarks'>" + perMarks + "</td><td class='subjectStudied'>" + subjectStudied + "</td><td class='attachment'>" + attachment + "</td></tr>";
+
+
+            $('#educationaldetails').append(row);
+
+            $('#quali').val('');
+           
+            $('#NCourse').val('');
+             $('#specialization').val('');
+            $('#nameofBoard').val('');
+             $('#yearPassed').val('');
+            $('#divison').val('');
+            $('#cgpa').val('');
+            $('#perMarks').val('');
+          $('#subjectStudied').val('')
+             $('#attachment').val('');
+        }
+    
+
+
+    function addDetails() {
+
+        var exam = $('#exam').val();
+        var sub = $('#sub').val();
+        var rollno = $('#rollno').val();
+        var year = $('#year').val();
+        var uDocument = $('#uDocument').val();
+        if ($('#exam').val() == "" || $('#exam').val() == null || $('#exam').val() == undefined) {
+            swal("", "Please select Exam ", "warning")
+            return false;
+        }
+        if ($('#sub').val() == "" || $('#sub').val() == undefined || $('#sub').val() == null) {
+            swal("", "Please enter subject", "warning")
+            return false;
+        }
+          if ($('#rollno').val() == "" || $('#rollno').val() == undefined || $('#rollno').val() == null) {
+            swal("", "Please enter rollno", "warning")
+            return false;
+        }
+         if ($('#year').val() == "" || $('#year').val() == undefined || $('#year').val() == null) {
+            swal("", "Please enter year", "warning")
+            return false;
+        }
+         if ($('#uDocument').val() == "" || $('#uDocument').val() == undefined || $('#uDocument').val() == null) {
+            swal("", "Please upload document", "warning")
+            return false;
+        }
+
+        var row="<tr><td class='exam'>"+exam+"</td><td class='sub'>"+sub+"</td><td class='rollno'>"+rollno+"</td><td class='year'>"+year+"</td><td class='document'>"+uDocument+"</td></tr>"
+
+        $('#Pdetails').append(row);
+
+        $('#exam').val('');
+        $('#sub').val('');
+         $('#rollno').val('');
+        $('#year').val('');
+         $('#uDocument').val('');
+       
+        }
+
+
+    function finalSubmit() {
+        debugger;
+        var model = {
+            lst: [],
+            lst1:[]
+        }
+        
+        var detailslist = [];
+        var detailslist1 = [];
+        $('#tab #educationaldetails tr ').each(function (i, d) {
+            var details = {};
+            details.qualification = $(this).find('.qu').text();
+            details.nameOfCourse=$(this).find('.courseName').text()
+            details.specialization=$(this).find('.specialize').text()
+            details.nameofBoard=$(this).find('.boardName').text()
+            details.yearPassed=$(this).find('.passedYear').text()
+            details.divison=$(this).find('.divison').text()
+            details.cgpa=$(this).find('.cgpa').text()
+            details.perMarks=$(this).find('.perMarks').text()
+            details.subjectStudied=$(this).find('.subjectStudied').text()
+            details.attachment = $(this).find('.attachment').text()
+            detailslist.push(details)
+        })
+         $('#tables #Pdetails tr ').each(function (i, d) {
+            var details1 = {};
+            details1.exam = $(this).find('.exam').text();
+            details1.subject=$(this).find('.sub').text()
+            details1.rollno=$(this).find('.rollno').text()
+            details1.year=$(this).find('.year').text()
+            details1.uDocument=$(this).find('.document').text()
+        
+            detailslist1.push(details1)
+               
+        })
+
+        if (detailslist != 0 && detailslist1!=0 ) {
+            $.each(detailslist, function (key, value) {
+
+                model.lst.push(value);
+
+            })
+              $.each(detailslist1, function (key, value) {
+
+                model.lst1.push(value);
+            })
+
+
+        }
+     
+       
+           
+     
+            $.ajax({
+                type: 'post',
+                url: '/Applicant/AcademicDetails',
+                data: JSON.stringify(model),
+                  contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data != null) {
+
+                    }
+                }
+
+
+            })
+        }
+  
+
+    function change() {
+
+        var Qu = $('#quali').val();
+
+        if (Qu == "Bachelor's Degree") {
+            $('#divSpecialization').removeClass('d-none')
+        }
+        else if (Qu == "Master's Degree") {
+            $('#divSpecialization').removeClass('d-none')
+        }
+        else {
+              $('#divSpecialization').addClass('d-none')
+        }
+    }
+
+
+</script>
 

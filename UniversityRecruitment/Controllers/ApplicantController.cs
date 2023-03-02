@@ -71,6 +71,26 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public JsonResult AcademicDetails(academicsDetails model)
+        {
+            AccountDb repo = new AccountDb();
+            academicsDetails obj = new academicsDetails();
+            model.ip = Common.GetIPAddress();
+            model.UserId = sm.userId;
+            if (model.lst!=null && model.lst.Count() > 0)
+            {
+               
+                obj = repo.saveQualification(model);
+            }
+            if(model.lst1!=null && model.lst1.Count() > 0)
+            {
+                obj = repo.saveugcDetails(model);
+            }
+
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Experience()
         {
