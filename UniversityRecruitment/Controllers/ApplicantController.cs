@@ -69,6 +69,38 @@ namespace UniversityRecruitment.Controllers
             return View();
         }
 
+        public ActionResult Awards()
+        {
+            return View();
+        }
+
+        public ActionResult Lectures()
+        {
+            return View();
+        }
+
+        public ActionResult FeePayment()
+        {
+            return View();
+        }
+
+        public ActionResult FeeRecipt()
+        {
+            return View();
+        }
+
+        
+
+        public ActionResult ResearchDegree()
+        {
+            return View();
+        }
+
+        public ActionResult Activities()
+        {
+            return View();
+        }
+
 
 
     }

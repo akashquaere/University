@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "FeeRecipt";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">List of Payment(s)</h3>
+        <p>View you payment transactions and print receipt.</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid">
+    
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title my-2">LIST OF PAYMENTS MADE</h4>
+                    @*<h6 class="card-subtitle">Add class <code>.full-color-table .full-info-table .hover-table</code></h6>*@
+                    <div class="table-responsive">
+                        <table class="table full-color-table full-info-table hover-table">
+                            <thead>
+                                <tr class="">
+                                    <th>Reference No.</th>
+                                    <th>No. of Forms</th>
+                                    <th>Total Amount</th>
+                                    <th>Transaction ID</th>
+                                    <th>Transaction Date</th>
+                                    <th>Mode</th>
+                                    <th style="width: 100px;"></th>
+                                </tr>
+                            
+                                    </thead>
+                            <tbody>
+                                <tr class="">
+                                    <td>23000013001</td>
+                                    <td>1</td>
+                                    <td>1500</td>
+                                    <td>TEST01032023021751PM</td>
+                                    <td>01/03/2023 02:17 PM</td>
+                                    <td>Online</td>
+                                    <td>
+                                        <a id="body_repPostAppliedPending_LnkPreview_0" class="badge badge-warning text-dark shadow" href=""><span class="fa fa-print"></span> Print</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

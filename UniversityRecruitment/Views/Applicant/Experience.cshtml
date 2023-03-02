@@ -4,5 +4,265 @@
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
 }
 
-<h2>Experience</h2>
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">
+            Experience
+        </h3>
+        <p>Teaching / Post Doctorial / Award / Fellowship & Experience Details</p>
+    </div>
+    <div class="col-md-7 align-self-center">
 
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4 class="m-b-0 text-white"><b>EDUCATIONAL QUALIFICATION</b></h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">Designation</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqAppointmentDesignation" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Nature of Post</label>
+                                <div class="col-sm-12">
+                                    <select id=" ddlAppointmentNature" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="Permanent">Permanent</option>
+                                        <option value="Contractual">Contractual</option>
+                                        <option value="Part-Time">Part-Time</option>
+
+                                    </select>
+                                    @*<span id="body_reqAppointmentNature" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Salary with Grade / AGP</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqAppointmentSalary" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label class="col-sm-12">Employer Name &amp; Address</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqAppointmentEmployer" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Period From</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control watermark">
+
+                                    @*<input type="hidden" name="ctl00$body$txtAppointmentFrom_Watermark_ClientState" id="body_txtAppointmentFrom_Watermark_ClientState">
+                                    <span id="body_regAppointmentFrom" class="validator" style="display:none;">enter date in DD/MM/YYYY format</span>
+                                    <span id="body_reqAppointmentFrom" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">To</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control watermark">
+
+                                    @*<input type="hidden" name="ctl00$body$txtAppointmentTo_Watermark_ClientState" id="body_txtAppointmentTo_Watermark_ClientState">
+                                    <span id="body_reqAppointmentTo" class="validator" style="display:none;">enter value</span>
+                                    <span id="body_regAppointmentTo" class="validator" style="display:none;">enter date in DD/MM/YYYY format</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqAppointmentUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <th rowspan="2">Designation</th>
+                                        <th rowspan="2">Nature of Post</th>
+                                        <th rowspan="2">Salary with Grade / AGP</th>
+                                        <th rowspan="2">Name &amp; Address of Employer</th>
+                                        <th colspan="3">Period of Experience</th>
+                                        <th rowspan="2">Attachment</th>
+                                        <th rowspan="2"></th>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Duration</th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4 class="m-b-0 text-white"><b>EDUCATIONAL QUALIFICATION</b></h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Agency</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqDoctoralAgency" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Host Institution</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqDoctoralHost" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Period From</label>
+                                <div class="col-sm-12">
+                                    <input  type="text" class="form-control watermark">
+
+                                    @*<input type="hidden" name="ctl00$body$txtDoctoralFrom_Watermark_ClientState" id="body_txtDoctoralFrom_Watermark_ClientState">
+                                    <span id="body_regDoctoralFrom" class="validator" style="display:none;">enter date in DD/MM/YYYY format</span>
+                                    <span id="body_reqDoctoralFrom" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">To</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control watermark">
+
+                                    @*<input type="hidden" name="ctl00$body$txtDoctoralTo_Watermark_ClientState" id="body_txtDoctoralTo_Watermark_ClientState">
+                                    <span id="body_regDoctoralTo" class="validator" style="display:none;">enter date in DD/MM/YYYY format</span>
+                                    <span id="body_reqDoctoralTo" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqDoctoralUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <th rowspan="2">Agency</th>
+                                        <th rowspan="2">Host Institution</th>
+                                        <th colspan="3">Period of Experience</th>
+                                        <th rowspan="2">Attachment</th>
+                                        <th rowspan="2"></th>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Duration</th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#"><span class="fa fa-save"></span> Save</a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

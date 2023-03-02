@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "Activities";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">
+            Activities
+        </h3>
+        <p>Administrative, Examination, Professional Development and Extension Activities</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        Research Degree
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <b>
+                                        Administrative Responsibilities
+                                        <br><span style="color: red">Such as Head / Chairperson / Dean / Asst. Dean / Director / Co-ordinator / Deputy Coordinator / Warden etc. / <br>Member of various cells or committee (i.e. IQAC / Admision Committee etc.)</span>
+                                    </b>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <b>
+                                        Examination and Evaluation Duties
+                                        <br><span style="color: red">Duties Assigned by the college / university or attending the examination paper evaluation<br>(i.e. Co-ordinator or member of flying squad, center evaluation committee, coding-decoding committee, collation committee, etc.).</span>
+                                    </b>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <b>
+                                        Student related co-curricular, extension and field based activities
+                                        <br><span style="color: red">Such as student clubs, career counseling, study visits, student seminars and other events, culural, sports, NCC, NSS and community services.</span>
+                                    </b>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <b>
+                                        Organising seminars / conferences / workshops, other college / univeristy activities
+                                    </b>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        Research Degree
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">Activity</label>
+                                <div class="col-sm-12">
+                                    <select name="ctl00$body$ddlActivity" id="" class="form-control">
+                                        <option value="-1">Select</option>
+                                        <option value="Administrative Responsibilities">Administrative Responsibilities</option>
+                                        <option value="Examination and Evaluation Duties">Examination and Evaluation Duties</option>
+                                        <option value="Student related co-curricular, extension and field based activities">Student related co-curricular, extension and field based activities</option>
+                                        <option value="Organising seminars / conferences / workshops, other college / univeristy activities">Organising seminars / conferences / workshops, other college / univeristy activities</option>
+
+                                    </select>
+                                    @*<span id="body_reqActivity" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">Description</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Name of Institution</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqInstitution" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Academic Year</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqAcademicYear" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table full-color-table full-info-table hover-table">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Serial</th>
+                                            <th>Nature of Activity</th>
+                                            <th>Description</th>
+                                            <th>Name of Institution</th>
+                                            <th>Academic Year</th>
+                                            <th>Attachment</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Nigam</td>
+                                <td>Eichmann</td>
+                                <td>@@Genelia</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Roshan</td>
+                                <td>Rogahn</td>
+                                <td>@@Hritik</td>
+                            </tr>
+                        </tbody>*@
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

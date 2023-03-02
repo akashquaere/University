@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "ResearchDegree";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">
+            Research Degree</h3>
+        <p>Whether Ph. D. awarded as per UGC Regulations 2009.</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        Research Degree
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="body_ddlDegree" id="body_lblDegree" class="col-sm-12">Degree</label>
+                                <div class="col-sm-12">
+                                    <select name="ctl00$body$ddlDegree" onchange="" id="body_ddlDegree" class="form-control">
+                                        <option selected="selected" value="-1">Select</option>
+                                        <option value="D. Lit">D. Lit</option>
+                                        <option value="D. Phil.">D. Phil.</option>
+                                        <option value="D. Sc.">D. Sc.</option>
+                                        <option value="M. Phil.">M. Phil.</option>
+                                        <option value="Ph. D.">Ph. D.</option>
+
+                                    </select>
+                                    <span id="" class="validator" style="display:none;">select an item</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="body_txtTitle" id="body_lblTitle" class="col-sm-12">Title</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" autocomplete="off" id="" class="form-control">
+                                    <span id="" class="validator" style="display:none;">enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="" id="body_lblSubject" class="col-sm-12">Subject / Discipline</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" autocomplete="off" id="body_txtSubject" class="form-control">
+                                    <span id="" class="validator" style="display:none;">enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label id="" class="col-sm-12">Year of Award</label>
+                                <div class="col-sm-12">
+                                    <input  type="text" autocomplete="off" maxlength="4" id="" class="form-control" onkeypress="">
+                                    <span id="" class="validator" style="display:none;">enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">University</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" autocomplete="off" id="body_txtUniversity" class="form-control">
+                                    <span id="" class="validator" style="display:none;">enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file"  id="" class="form-control">
+                                    <span id="" class="validator" style="display:none;">upload file</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="body_btnAdd" id="" class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a id="" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table full-color-table full-info-table hover-table">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Degree</th>
+                                            <th>Title</th>
+                                            <th>Subject / Discipline</th>
+                                            <th>Marks</th>
+                                            <th>Year of Award</th>
+                                            <th>
+                                                Ph. D. Awarded<br>
+                                                (UGC 2009 Reg.)
+                                            </th>
+                                            <th>University</th>
+                                            <th>Document</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Nigam</td>
+                                                <td>Eichmann</td>
+                                                <td>@@Genelia</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Roshan</td>
+                                                <td>Rogahn</td>
+                                                <td>@@Hritik</td>
+                                            </tr>
+                                        </tbody>*@
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
